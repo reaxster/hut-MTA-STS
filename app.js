@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 5000
 
 const config = {
     "mta-sts.hospitality-ut.com": 
@@ -14,6 +14,7 @@ mx: alt1.aspmx.l.google.com
 max_age: 604800`
 }
 const hostname = "mta-sts.hospitality-ut.com"
+
 app.get('/', (req, res) => {
     res.send("Page is a parked domain xD!")
 })
@@ -25,6 +26,4 @@ app.get('/.well-known/mta-sts.txt', (req, res) => {
   res.send(config[hostname])
 })
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+app.listen(process.env.PORT || port, () => console.log(`Listening on port ${port}`))

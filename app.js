@@ -15,15 +15,18 @@ max_age: 604800`
 }
 const hostname = "mta-sts.hospitality-ut.com"
 
+app.use(express.static('./'))
+
+
 app.get('/', (req, res) => {
     res.send("Page is a parked domain xD!")
 })
 
-app.get('/.well-known/mta-sts.txt', (req, res) => {
+/*app.get('/.well-known/mta-sts.txt', (req, res) => {
     res.set({
         "Content-Type": "text/plain;charset=UTF-8", // ==> new header
     })
   res.send(config[hostname])
-})
+})*/
 
 app.listen(process.env.PORT || port, () => console.log(`Listening on port ${port}`))
